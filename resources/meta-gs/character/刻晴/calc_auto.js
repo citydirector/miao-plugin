@@ -24,7 +24,7 @@ export const details = [{
     }
   }
 }, {
-  title: '刻九万妲Q激化总伤',
+  title: '刻芙希杜Q总伤害',
   params: { q: 1, team: true },
   dmg: ({ talent }, dmg) => {
     let t1j = dmg(talent.q['技能伤害'], 'q', 'aggravate')
@@ -64,71 +64,44 @@ export const buffs = [{
     dmg: 24
   }
 }, {
-  check: ({ cons, params }) => cons <= 1 && params.team === true,
-  title: '精1苍古0命万叶：获得[dmg]%增伤(苍古普攻16增伤)，增加[atkPct]%攻击,减抗[kx]%',
-  data: {
-    aDmg: 16,
-    a2Dmg: 16,
-    a3Dmg: 16,
-    dmg: 40,
-    atkPct: 20,
-    kx: 40
-  }
-}, {
-  check: ({ cons, params }) => ((cons < 6 && cons > 1) && params.team === true),
-  title: '精1苍古2命万叶：获得[dmg]%增伤(苍古普攻16增伤)，增加[atkPct]%攻击,减抗[kx]%,精通[mastery]',
-  data: {
-    aDmg: 16,
-    a2Dmg: 16,
-    a3Dmg: 16,
-    dmg: 48,
-    atkPct: 20,
-    kx: 40,
-    mastery: 200
-  }
-}, {
-  check: ({ cons, params }) => (cons >= 6 && params.team === true),
-  title: '精5苍古6命万叶：获得[dmg]%增伤(苍古普攻32增伤)，增加[atkPct]%攻击,减抗[kx]%,精通[mastery]',
+  check: ({ params }) => params.team === true,
+  title: '精5苍古6命芙宁娜：获得[dmg]%增伤，普攻[aDmg]%增伤，增加[atkPct]%攻击',
   data: {
     aDmg: 32,
     a2Dmg: 32,
     a3Dmg: 32,
-    dmg: 48,
-    atkPct: 40,
-    kx: 40,
-    mastery: 200
+    dmg: 124,
+    atkPct: 40
   }
 }, {
   check: ({ params }) => params.team === true,
-  title: '天空九条：增加[atkPlus]点攻击力与[cdmg]%爆伤',
-  data: {
-    atkPlus: 794.2,
-    cdmg: 60
-  }
-}, {
-  check: ({ params , artis }) => params.team === true && artis.昔日宗室之仪 !== 4 ,
-  title: '九条-昔日宗室之仪：增加攻击[atkPct]%',
+  title: '芙宁娜-千岩牢固：增加攻击[atkPct]%',
   data: {
     atkPct: 20
   }
 }, {
-  check: ({ cons, params }) => (cons >= 2 && params.team === true),
-  title: '千夜2命纳西妲：增加精通[mastery],减防[enemyDef]%',
+  check: ({ params }) => params.team === true,
+  title: '精5岩峰巡歌6命希诺宁：[kxdmg]%减抗，[dmg]%增伤',
   data: {
-    mastery: 40,
-    enemyDef: 30
-  }
-}, {
-  check: ({ cons, params }) => (cons < 2 && params.team === true),
-  title: '千夜0命纳西妲：增加精通[mastery]',
-  data: {
-    mastery: 40
+    kxdmg: 45,  // 减抗
+    dmg: 51.2   // 增伤
   }
 }, {
   check: ({ params }) => params.team === true,
-  sort: 7,
-  title: '纳西妲-净善摄受明论：Q范围内在场角色增加精通[mastery]',
+  title: '希诺宁-烬城勇者绘卷：[dmg]%增伤',
   data: {
-    mastery: 250
+    dmg: 40
+  }
+}, {
+  check: ({ params }) => params.team === true,
+  title: '精5黑蚀6命杜林：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
+  data: {
+    kx: 20,
+    dmg: 50,
+    enemyDef: 30,
+    atkPct: 32,
+    aPlus: 3000,
+    ePlus: 3000,
+    qPlus: 3000
   }
 }, 'aggravate']
