@@ -9,7 +9,8 @@ export const details = [{
   params: { q: 1 },
   dmg: ({ talent }, dmg) => dmg(talent.q['技能伤害'] + talent.q['连斩伤害'] + talent.q['最后一击伤害'], 'q')
 }, {
-  }
+ 
+}
 }]
 
 export const defDmgIdx = 3
