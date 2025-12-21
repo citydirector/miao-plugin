@@ -1,0 +1,37 @@
+name: Upstream Sync
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # 每天国际标准时间0点（北京时间早8点）运行一次
+  workflow_dispatch: # 允许你手动点击按钮触发同步
+
+jobs:
+  sync_latest_from_upstream:
+    runs-on: ubuntu-latest
+    name: Sync latest commits from upstream repo
+
+    steps:
+    # 第一步：检出你的代码
+    - name: Checkout target repo
+      uses: actions/checkout@v3
+
+    # 第二步：同步上游代码
+    - name: Sync upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+      with:
+        upstream_sync_repo: yoimiya-kokomi/miao-plugin # 原作者/原仓库名
+        upstream_sync_branch: master    # 原仓库分支
+        target_sync_branch: master      # 你的分支（通常也是master）
+        target_repo_token: ${{ secrets.GITHUB_TOKEN }} # 自动令牌，无需修改
+        test_mode: false
+
+    # 第三步：如果同步失败（通常是因为你有魔改导致冲突），输出提示
+    - name: Sync check
+      if: failure()
+      run: |
+        echo "[Error] 由于上游仓库有变动导致冲突，无法自动同步，请手动解决。"
+        echo "[Info] 如果你在master分支修改了代码，请尽量保持master纯净，将修改放在其他分支。"
