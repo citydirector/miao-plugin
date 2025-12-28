@@ -26,7 +26,15 @@ export const details = [{
 }, {
   title: '刻芙希杜Q总伤害',
   params: { q: 1, team: true },
-  dmg: ({ talent }, dmg) => dmg(talent.q['技能伤害'] + talent.q['连斩伤害'] + talent.q['最后一击伤害'], 'q')
+  dmg: ({ talent }, dmg) => {
+    let t1 = dmg(talent.q['技能伤害'], 'q')
+    let t2 = dmg(talent.q['连斩伤害'] / 8, 'q')
+    let t3 = dmg(talent.q['最后一击伤害'], 'q')
+    return {
+      dmg: t1.dmg + t2.dmg * 8 + t3.dmg,
+      avg: t1.avg + t2.avg * 8 + t3.avg
+    }
+  }
 }]
 
 export const defParams = {
@@ -91,8 +99,8 @@ export const buffs = [{
     dmg: 50,
     enemyDef: 30,
     atkPct: 32,
-    aPlus: 3500,
-    ePlus: 3500,
-    qPlus: 3500
+    aPlus: 4000,
+    ePlus: 4000,
+    qPlus: 4000
   }
 }, ]
