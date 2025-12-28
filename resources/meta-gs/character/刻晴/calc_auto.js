@@ -24,8 +24,8 @@ export const details = [{
     }
   }
 }, {
-  title: '刻芙希杜Q总伤害',
-  params: { q: 1, team: 'kefuxidu' },  // 修改为字符串标识
+  title: '刻皇希杜Q总伤害',
+  params: { q: 1, team: 'kehuangxidu' },
   dmg: ({ talent }, dmg) => {
     let t1j = dmg(talent.q['技能伤害'], 'q')
     let t2j = dmg(talent.q['连斩伤害'] / 8, 'q')
@@ -37,8 +37,21 @@ export const details = [{
     }
   }
 }, {
-  title: '刻皇希杜Q总伤害',
-  params: { q: 1, team: 'kehuangxidu' },  // 修改为字符串标识
+  title: '刻皇夏杜Q总伤害',
+  params: { q: 1, team: 'kehuangxiadu' },
+  dmg: ({ talent }, dmg) => {
+    let t1j = dmg(talent.q['技能伤害'], 'q')
+    let t2j = dmg(talent.q['连斩伤害'] / 8, 'q')
+    let t2 = dmg(talent.q['连斩伤害'] / 8, 'q')
+    let t3j = dmg(talent.q['最后一击伤害'], 'q')
+    return {
+      dmg: t1j.dmg + t2j.dmg * 2 + t2.dmg * 6 + t3j.dmg,
+      avg: t1j.avg + t2j.avg * 2 + t2.avg * 6 + t3j.avg
+    }
+  }
+}, {
+  title: '刻芙希杜Q总伤害',
+  params: { q: 1, team: 'kefuxidu' },
   dmg: ({ talent }, dmg) => {
     let t1j = dmg(talent.q['技能伤害'], 'q')
     let t2j = dmg(talent.q['连斩伤害'] / 8, 'q')
@@ -53,10 +66,10 @@ export const details = [{
 
 export const defParams = {
   q: 1,
-  team: 'kefuxidu'  // 默认显示刻芙希杜
+  team: 'kehuangxidu'  // 默认显示刻皇希杜
 }
 
-export const defDmgIdx = 4  // 对应"刻芙希杜Q总伤害"
+export const defDmgIdx = 4  // 对应"刻皇希杜Q总伤害"
 export const mainAttr = 'atk,cpct,cdmg'
 
 export const buffs = [{
@@ -94,20 +107,41 @@ export const buffs = [{
     atkPct: 20
   }
 }, {
-  // 刻皇希杜队伍buff
-  check: ({ params }) => params.team === 'kehuangxidu',
+  // 刻皇希杜和刻皇夏杜队伍buff
+  check: ({ params }) => params.team === 'kehuangxidu' || params.team === 'kehuangxiadu',
   title: '精5终末6命皇女：增加[atkPct]%攻击',
   data: {
     atkPct: 85
   }
 }, {
-  check: ({ params }) => params.team === 'kehuangxidu',
+  check: ({ params }) => params.team === 'kehuangxidu' || params.team === 'kehuangxiadu',
   title: '皇女-千岩牢固：增加攻击[atkPct]%',
   data: {
     atkPct: 20
   }
 }, {
-  // 两个队伍共有的buff
+  // 刻皇夏杜队伍buff
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '精5香韵6命夏沃蕾：增加[atkPct]%攻击，[kx]%减抗，[dmg]%增伤',
+  data: {
+    atkPct: 104,
+    kx: 40,
+    dmg: 60
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '夏沃蕾-宗室：增加攻击[atkPct]%',
+  data: {
+    atkPct: 20
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '双火共鸣：增加攻击[atkPct]%',
+  data: {
+    atkPct: 25
+  }
+}, {
+  // 刻芙希杜和刻皇希杜共有buff
   check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kehuangxidu',
   title: '精5岩峰巡歌6命希诺宁：[kx]%减抗，[dmg]%增伤',
   data: {
@@ -135,7 +169,7 @@ export const buffs = [{
   }
 }, {
   check: ({ params }) => params.team === 'kehuangxidu',
-  title: '精5黑蚀6命杜林（刻皇队）：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
+  title: '精5黑蚀6命杜林（刻皇希队）：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
   data: {
     kx: 35,
     dmg: 50,
@@ -146,8 +180,20 @@ export const buffs = [{
     qPlus: 3500
   }
 }, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '精5黑蚀6命杜林（刻皇夏队）：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
+  data: {
+    kx: 35,
+    dmg: 50,
+    enemyDef: 30,
+    atkPct: 56,
+    aPlus: 4400,
+    ePlus: 4400,
+    qPlus: 4400
+  }
+}, {
   // 只有刻皇队有超激化反应
-  check: ({ params }) => params.team === 'kehuangxidu',
+  check: ({ params }) => params.team === 'kehuangxidu' || params.team === 'kehuangxiadu',
   title: '超激化反应',
   data: {
     reaction: 'aggravate'
