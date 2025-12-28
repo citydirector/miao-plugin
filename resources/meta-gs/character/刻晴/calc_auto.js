@@ -37,6 +37,19 @@ export const details = [{
     }
   }
 }, {
+  title: '刻芙希杜Q总伤害',
+  params: { q: 1, team: 'kefuxidu' },
+  dmg: ({ talent }, dmg) => {
+    let t1j = dmg(talent.q['技能伤害'], 'q')
+    let t2j = dmg(talent.q['连斩伤害'] / 8, 'q')
+    let t2 = dmg(talent.q['连斩伤害'] / 8, 'q')
+    let t3j = dmg(talent.q['最后一击伤害'], 'q')
+    return {
+      dmg: t1j.dmg + t2j.dmg * 2 + t2.dmg * 6 + t3j.dmg,
+      avg: t1j.avg + t2j.avg * 2 + t2.avg * 6 + t3j.avg
+    }
+  }
+}, {
   title: '刻皇夏杜Q总伤害',
   params: { q: 1, team: 'kehuangxiadu' },
   dmg: ({ talent }, dmg) => {
@@ -50,8 +63,8 @@ export const details = [{
     }
   }
 }, {
-  title: '刻芙希杜Q总伤害',
-  params: { q: 1, team: 'kefuxidu' },
+  title: '刻九夏杜Q总伤害',
+  params: { q: 1, team: 'kejiuxiadu' },
   dmg: ({ talent }, dmg) => {
     let t1j = dmg(talent.q['技能伤害'], 'q')
     let t2j = dmg(talent.q['连斩伤害'] / 8, 'q')
@@ -66,10 +79,10 @@ export const details = [{
 
 export const defParams = {
   q: 1,
-  team: 'kefuxidu'  // 默认显示刻芙希杜
+  team: 'kejiuxiadu'  // 默认显示刻九夏杜
 }
 
-export const defDmgIdx = 6  // 对应"刻芙希杜Q总伤害"（索引6，因为数组从0开始，且有7个元素）
+export const defDmgIdx = 8  // 对应"刻九夏杜Q总伤害"（索引8，因为数组从0开始，有9个元素）
 export const mainAttr = 'atk,cpct,cdmg'
 
 export const buffs = [{
@@ -107,6 +120,20 @@ export const buffs = [{
     atkPct: 20
   }
 }, {
+  // 刻九夏杜队伍buff
+  check: ({ params }) => params.team === 'kejiuxiadu',
+  title: '精5终末6命九条：增加[atkPlus]点攻击力与[cdmg]%爆伤',
+  data: {
+    atkPlus: 776.2,
+    cdmg: 60
+  }
+}, {
+  check: ({ params }) => params.team === 'kejiuxiadu',
+  title: '九条-千岩牢固：增加攻击[atkPct]%',
+  data: {
+    atkPct: 20
+  }
+}, {
   // 刻皇希杜和刻皇夏杜队伍buff
   check: ({ params }) => params.team === 'kehuangxidu' || params.team === 'kehuangxiadu',
   title: '精5终末6命皇女：增加[atkPct]%攻击',
@@ -120,8 +147,8 @@ export const buffs = [{
     atkPct: 20
   }
 }, {
-  // 刻皇夏杜队伍buff
-  check: ({ params }) => params.team === 'kehuangxiadu',
+  // 刻皇夏杜和刻九夏杜队伍buff
+  check: ({ params }) => params.team === 'kehuangxiadu' || params.team === 'kejiuxiadu',
   title: '精5香韵6命夏沃蕾：增加[atkPct]%攻击，[kx]%减抗，[dmg]%增伤',
   data: {
     atkPct: 104,
@@ -129,13 +156,13 @@ export const buffs = [{
     dmg: 60
   }
 }, {
-  check: ({ params }) => params.team === 'kehuangxiadu',
+  check: ({ params }) => params.team === 'kehuangxiadu' || params.team === 'kejiuxiadu',
   title: '夏沃蕾-宗室：增加攻击[atkPct]%',
   data: {
     atkPct: 20
   }
 }, {
-  check: ({ params }) => params.team === 'kehuangxiadu',
+  check: ({ params }) => params.team === 'kehuangxiadu' || params.team === 'kejiuxiadu',
   title: '双火共鸣：增加攻击[atkPct]%',
   data: {
     atkPct: 25
@@ -163,9 +190,21 @@ export const buffs = [{
     dmg: 50,
     enemyDef: 30,
     atkPct: 32,
-    aPlus: 3000,
-    ePlus: 3000,
-    qPlus: 3000
+    aPlus: 2900,
+    ePlus: 2900,
+    qPlus: 2900
+  }
+}, {
+  check: ({ params }) => params.team === 'kejiuxiadu',
+  title: '精5黑蚀6命杜林（刻九队）：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
+  data: {
+    kx: 20,
+    dmg: 50,
+    enemyDef: 30,
+    atkPct: 32,
+    aPlus: 3990,
+    ePlus: 3990,
+    qPlus: 3990
   }
 }, {
   check: ({ params }) => params.team === 'kehuangxidu',
@@ -175,9 +214,9 @@ export const buffs = [{
     dmg: 50,
     enemyDef: 30,
     atkPct: 56,
-    aPlus: 3450,
-    ePlus: 3450,
-    qPlus: 3450
+    aPlus: 3100,
+    ePlus: 3100,
+    qPlus: 3100
   }
 }, {
   check: ({ params }) => params.team === 'kehuangxiadu',
@@ -187,8 +226,8 @@ export const buffs = [{
     dmg: 50,
     enemyDef: 30,
     atkPct: 56,
-    aPlus: 3800,
-    ePlus: 3800,
-    qPlus: 3800
+    aPlus: 4000,
+    ePlus: 4000,
+    qPlus: 4000
   }
 }]
