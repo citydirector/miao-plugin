@@ -66,10 +66,10 @@ export const details = [{
 
 export const defParams = {
   q: 1,
-  team: 'kehuangxidu'  // 默认显示刻皇希杜
+  team: 'kefuxidu'  // 默认显示刻芙希杜
 }
 
-export const defDmgIdx = 4  // 对应"刻皇希杜Q总伤害"
+export const defDmgIdx = 6  // 对应"刻芙希杜Q总伤害"（索引6，因为数组从0开始，且有7个元素）
 export const mainAttr = 'atk,cpct,cdmg'
 
 export const buffs = [{
@@ -190,7 +190,5 @@ export const buffs = [{
     aPlus: 3800,
     ePlus: 3800,
     qPlus: 3800
-  }
-}, {
   }
 }]
