@@ -81,9 +81,9 @@ export const buffs = [{
   }
 }, {
   check: ({ params }) => params.team === true,
-  title: '精5岩峰巡歌6命希诺宁：[kxdmg]%减抗，[dmg]%增伤',
+  title: '精5岩峰巡歌6命希诺宁：[kx]%减抗，[dmg]%增伤',
   data: {
-    kxdmg: 45,  // 减抗
+    kx: 45,  // 减抗
     dmg: 51.2   // 增伤
   }
 }, {
