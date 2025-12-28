@@ -24,6 +24,19 @@ export const details = [{
     }
   }
 }, {
+  title: '刻芙希草Q总伤害',
+  params: { q: 1, team: 'kefuxicao' },
+  dmg: ({ talent }, dmg) => {
+    let t1j = dmg(talent.q['技能伤害'], 'q', 'aggravate')
+    let t2j = dmg(talent.q['连斩伤害'] / 8, 'q', 'aggravate')
+    let t2 = dmg(talent.q['连斩伤害'] / 8, 'q')
+    let t3j = dmg(talent.q['最后一击伤害'], 'q', 'aggravate')
+    return {
+      dmg: t1j.dmg + t2j.dmg * 2 + t2.dmg * 6 + t3j.dmg,
+      avg: t1j.avg + t2j.avg * 2 + t2.avg * 6 + t3j.avg
+    }
+  }
+}, {
   title: '刻皇希杜Q总伤害',
   params: { q: 1, team: 'kehuangxidu' },
   dmg: ({ talent }, dmg) => {
@@ -82,8 +95,8 @@ export const defParams = {
   team: 'kefuxidu'  // 默认显示刻芙希杜
 }
 
-export const defDmgIdx = 5  // 对应"刻芙希杜Q总伤害"（索引5，因为数组从0开始）
-export const mainAttr = 'atk,cpct,cdmg'
+export const defDmgIdx = 6  // 对应"刻芙希杜Q总伤害"（索引6，因为数组从0开始）
+export const mainAttr = 'atk,cpct,cdmg,mastery'
 
 export const buffs = [{
   title: '刻晴被动：释放Q获得15%暴击率',
@@ -103,8 +116,8 @@ export const buffs = [{
     dmg: 24
   }
 }, {
-  // 刻芙希杜队伍buff
-  check: ({ params }) => params.team === 'kefuxidu',
+  // 刻芙希杜和刻芙希草队伍buff
+  check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kefuxicao',
   title: '精5苍古6命芙宁娜：获得[dmg]%增伤，普攻[aDmg]%增伤，增加[atkPct]%攻击',
   data: {
     aDmg: 32,
@@ -118,6 +131,14 @@ export const buffs = [{
   title: '芙宁娜-千岩牢固：增加攻击[atkPct]%',
   data: {
     atkPct: 20
+  }
+}, {
+  // 刻芙希草队伍buff
+  check: ({ params }) => params.team === 'kefuxicao',
+  title: '精5千夜6命纳西妲：增加精通[mastery]（双草千夜）,减防[enemyDef]%',
+  data: {
+    mastery: 298,
+    enemyDef: 30 
   }
 }, {
   // 刻九夏杜队伍buff
@@ -168,15 +189,15 @@ export const buffs = [{
     atkPct: 25
   }
 }, {
-  // 刻芙希杜和刻皇希杜共有buff
-  check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kehuangxidu',
+  // 刻芙希杜、刻芙希草和刻皇希杜共有buff
+  check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kefuxicao' || params.team === 'kehuangxidu',
   title: '精5岩峰巡歌6命希诺宁：[kx]%减抗，[dmg]%增伤',
   data: {
     kx: 45,
     dmg: 51.2
   }
 }, {
-  check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kehuangxidu',
+  check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kefuxicao' || params.team === 'kehuangxidu',
   title: '希诺宁-烬城勇者绘卷：[dmg]%增伤',
   data: {
     dmg: 40
@@ -229,5 +250,12 @@ export const buffs = [{
     aPlus: 4000,
     ePlus: 4000,
     qPlus: 4000
+  }
+}, {
+  // 刻芙希草队伍有超激化反应
+  check: ({ params }) => params.team === 'kefuxicao',
+  title: '超激化反应',
+  data: {
+    reaction: 'aggravate'
   }
 }]
