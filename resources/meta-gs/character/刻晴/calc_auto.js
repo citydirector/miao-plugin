@@ -92,10 +92,10 @@ export const details = [{
 
 export const defParams = {
   q: 1,
-  team: 'kefuxidu'  // 默认显示刻芙希杜
+  team: false  // 默认显示单人Q总伤害
 }
 
-export const defDmgIdx = 6  // 对应"刻芙希杜Q总伤害"（索引6，因为数组从0开始）
+export const defDmgIdx = 2  // 对应"Q总伤害"（索引2，因为数组从0开始）
 export const mainAttr = 'atk,cpct,cdmg,mastery'
 
 export const buffs = [{
