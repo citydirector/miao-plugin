@@ -175,9 +175,9 @@ export const buffs = [{
     dmg: 50,
     enemyDef: 30,
     atkPct: 56,
-    aPlus: 3500,
-    ePlus: 3500,
-    qPlus: 3500
+    aPlus: 3450,
+    ePlus: 3450,
+    qPlus: 3450
   }
 }, {
   check: ({ params }) => params.team === 'kehuangxiadu',
@@ -187,15 +187,10 @@ export const buffs = [{
     dmg: 50,
     enemyDef: 30,
     atkPct: 56,
-    aPlus: 4400,
-    ePlus: 4400,
-    qPlus: 4400
+    aPlus: 3800,
+    ePlus: 3800,
+    qPlus: 3800
   }
 }, {
-  // 只有刻皇队有超激化反应
-  check: ({ params }) => params.team === 'kehuangxidu' || params.team === 'kehuangxiadu',
-  title: '超激化反应',
-  data: {
-    reaction: 'aggravate'
   }
 }]
