@@ -211,9 +211,9 @@ export const buffs = [{
     dmg: 50,
     enemyDef: 30,
     atkPct: 32,
-    aPlus: 2900,
-    ePlus: 2900,
-    qPlus: 2900
+    aPlus: 2950,
+    ePlus: 2950,
+    qPlus: 2950
   }
 }, {
   check: ({ params }) => params.team === 'kejiuxiadu',
@@ -235,9 +235,9 @@ export const buffs = [{
     dmg: 50,
     enemyDef: 30,
     atkPct: 56,
-    aPlus: 3100,
-    ePlus: 3100,
-    qPlus: 3100
+    aPlus: 3400,
+    ePlus: 3400,
+    qPlus: 3400
   }
 }, {
   check: ({ params }) => params.team === 'kehuangxiadu',
