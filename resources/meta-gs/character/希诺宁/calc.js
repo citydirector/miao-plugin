@@ -23,8 +23,8 @@ export const details = [{
   dmg: ({ calc, attr }, { heal }) => heal(1.2 * calc(attr.def))
 }]
 
-export const defParams = { Nightsoul: true }
-export const defDmgIdx = 3
+export const defParams = { NightsoulStatus: true }  // 修正参数名
+export const defDmgIdx = 1  // 对应"刃轮巡猎尾段伤害"（索引1，因为数组从0开始）
 export const mainAttr = 'def,cpct,cdmg,heal'
 
 export const buffs = [{
@@ -75,5 +75,7 @@ export const buffs = [{
     a3Plus: ({ attr, calc }) => calc(attr.def) * 300 / 100
   }
 }]
+
+export const createdBy = '冰翼'
 
 export const createdBy = '冰翼'
