@@ -20,6 +20,13 @@ export const details = [{
   },
   dmg: ({ talent }, dmg) => dmg(talent.e['三段瞬水剑伤害'], 'a', 'vaporize')
 }, {
+  title: '绫希茜杜瞬水剑三段蒸发',
+  params: {
+    q: 1,
+    team: 'lingxixidu' 
+  },
+  dmg: ({ talent }, dmg) => dmg(talent.e['三段瞬水剑伤害'], 'a', 'vaporize')
+}, {
   title: 'Q每段伤害',
   params: {
     q: 1,
@@ -28,12 +35,12 @@ export const details = [{
   dmg: ({ talent }, dmg) => dmg(talent.q['水花剑伤害'], 'q')
 }]
 
-export const defDmgIdx = 2
+export const defDmgIdx = 3
 export const mainAttr = 'hp,atk,cpct,cdmg,mastery'
 
 export const defParams = {
   q: 1,
-  team: true
+  team: 'lingxixidu'  // 修改为绫希茜杜队伍
 }
 
 export const buffs = [{
@@ -68,7 +75,8 @@ export const buffs = [{
     aPlus: ({ attr, calc, talent }) => calc(attr.hp) * talent.e['浪闪伤害值提高'] / 100 * 5
   }
 }, {
-  check: ({ params , artis }) => params.team === true && artis.昔日宗室之仪 !== 4 ,
+  // 绫夜万班队伍buff
+  check: ({ params, artis }) => params.team === true && artis.昔日宗室之仪 !== 4,
   title: '班尼特-昔日宗室之仪：增加攻击[atkPct]%',
   data: {
     atkPct: 20
@@ -121,4 +129,34 @@ export const buffs = [{
     dmg: 35,
     hpPct: 65
   }
-}, 'vaporize']
+}, {
+  // 绫希茜杜队伍buff
+  check: ({ params }) => params.team === 'lingxixidu',
+  title: '绫希茜杜：希诺宁6+5教官4、茜特菈莉6+5勇者4（茜特菈莉精通最终面板，按1500计）',
+  data: {
+    hpPct: 40,
+    atkPct: 25 + 20 + 45,  // 25+20+45 = 90%
+    dmg: 40 + 51.2 + 56 + 60,  // 207.2%
+    kx: 45 + 20 + 20,  // 85%
+    aPlus: 1500 * 2 + 2850,  // 5850
+    mastery: 250 + 120  // 370
+  }
+}, {
+  check: ({ params }) => params.team === 'lingxixidu',
+  title: '精5黑蚀6命杜林：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
+  data: {
+    kx: 20,
+    dmg: 50,
+    enemyDef: 30,
+    atkPct: 32,
+    aPlus: 2550,
+    ePlus: 2550,
+    qPlus: 2550
+  }
+}, {
+  // 蒸发反应
+  title: '蒸发反应',
+  data: {
+    reaction: 'vaporize'
+  }
+}]
