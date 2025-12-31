@@ -34,6 +34,18 @@ export const details = [{
     }
   }
 }, {
+    title: '克皇夏杜 AAAE一轮',
+    params: { team: 'kehuangxiadu',  blPct: 0.5 },
+    dmg: ({ talent }, dmg) => {
+    let a1 = dmg(talent.e['驰猎伤害2'][1], 'a')
+    let a2 = dmg(talent.e['驰猎伤害2'][1], 'a')
+    let e1 = dmg(talent.e['贯夜伤害2'][2], 'a')
+    return {
+      dmg: a1.dmg * 2 + a2.dmg + e1.dmg,
+      avg: a1.avg * 2 + a2.avg + e1.avg
+    }
+  }
+}, {
     title: '克皇 Q完整激化',
     params: { team: true },
     dmg: ({ talent }, dmg) => {
@@ -47,7 +59,7 @@ export const details = [{
 }]
 
 export const defParams = ({ weapon }) => weapon.name === '海渊终曲' ? { BondOfLife: 35 * 3 + 25, blPct: 1 } : { BondOfLife: 35 * 3, blPct: 1 }// 生命之契在此调整,请勿超过200,默认生命之契未计入队友治疗转化
-export const defDmgIdx = 4
+export const defDmgIdx = 6  // 对应"克皇夏杜 AAAE一轮"（索引6，数组从0开始）
 export const mainAttr = 'atk,cpct,cdmg,mastery,dmg'
 
 export const buffs = [{
@@ -81,6 +93,66 @@ export const buffs = [{
   data: {
     mastery: 40,
     enemyDef: 30
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '精5苍古6命芙宁娜：获得[dmg]%增伤，普攻[aDmg]%增伤，增加[atkPct]%攻击',
+  data: {
+    aDmg: 32,
+    a2Dmg: 32,
+    a3Dmg: 32,
+    dmg: 124,
+    atkPct: 40
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '芙宁娜-千岩牢固：增加攻击[atkPct]%',
+  data: {
+    atkPct: 20
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '精5终末6命皇女：增加[atkPct]%攻击',
+  data: {
+    atkPct: 85
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '皇女-千岩牢固：增加攻击[atkPct]%',
+  data: {
+    atkPct: 20
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '精5香韵6命夏沃蕾：增加[atkPct]%攻击，[kx]%减抗，[dmg]%增伤',
+  data: {
+    atkPct: 104,
+    kx: 40,
+    dmg: 60
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '夏沃蕾-宗室：增加攻击[atkPct]%',
+  data: {
+    atkPct: 20
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '双火共鸣：增加攻击[atkPct]%',
+  data: {
+    atkPct: 25
+  }
+}, {
+  check: ({ params }) => params.team === 'kehuangxiadu',
+  title: '精5黑蚀6命杜林（克皇夏杜队）：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
+  data: {
+    kx: 35,
+    dmg: 50,
+    enemyDef: 30,
+    atkPct: 56,
+    aPlus: 4000,
+    ePlus: 4000,
+    qPlus: 4000
   }
 }, {
   check: ({ cons, params }) => (cons < 2 && params.team === true),
