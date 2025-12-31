@@ -92,10 +92,10 @@ export const details = [{
 
 export const defParams = {
   q: 1,
-  team: 'kejiuxiadu'  // 默认显示刻九夏杜
+  team: 'kefuxidu'  // 默认显示刻芙希杜
 }
 
-export const defDmgIdx = 8  // 对应"刻九夏杜Q总伤害"（索引8，因为数组从0开始，有9个元素）
+export const defDmgIdx = 6  // 对应"刻芙希杜Q总伤害"（索引6，因为数组从0开始）
 export const mainAttr = 'atk,cpct,cdmg,mastery'
 
 export const buffs = [{
@@ -135,7 +135,7 @@ export const buffs = [{
 }, {
   // 刻芙希草队伍buff
   check: ({ params }) => params.team === 'kefuxicao',
-  title: '精5千夜6命纳西妲：增加精通[mastery]（双草千夜）,减防[enemyDef]%',
+  title: '精5千夜纳西妲：增加精通[mastery]（双草千夜）,减防[enemyDef]%',
   data: {
     mastery: 298,
     enemyDef: 30 
@@ -213,7 +213,7 @@ export const buffs = [{
     atkPct: 32,
     aPlus: 2950,
     ePlus: 2950,
-    qPlus: 2950
+    qPlus: 2900
   }
 }, {
   check: ({ params }) => params.team === 'kejiuxiadu',
