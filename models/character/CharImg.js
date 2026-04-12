@@ -113,7 +113,7 @@ const CharImg = {
     for (let i = 1; i <= 6; i++) {
       tAdd(`cons${i}`, `icons/cons-${i}`)
     }
-    for (let i = 0; i <= 3; i++) {
+    for (let i = 0; i <= 4; i++) {
       tAdd(`passive${i}`, `icons/passive-${i}`)
     }
     imgs.a = `/common/item/atk-${weaponType}.webp`
@@ -142,7 +142,7 @@ const CharImg = {
     for (let i = 1; i <= 4; i++) {
       add(`tree${i}`, `imgs/tree-${i}`)
     }
-    for (let key of ['a', 'e', 'q', 't', 'z', 'a2', 'e2', 'q2', 'me', 'mt']) {
+    for (let key of ['a', 'e', 'q', 't', 'z', 'a2', 'e2', 'q2', 'xe', 'me', 'mt']) {
       add(key, `imgs/talent-${key}`)
     }
     for (let i = 1; i <= 6; i++) {

@@ -496,9 +496,10 @@ const buffs = {
   谐律异想断章: {
     2: attr('atkPct', 18),
     4: {
-      title: '生命之契的数值提升或降低时，角色造成的伤害提升[dmg]%',
+      title: '生命之契的数值提升或降低[buff]次，角色造成的伤害提升[dmg]%',
       data: {
-        dmg: 18 * 3
+        buff: ({ params, weapon }) => (params.BondOfLifeGet || 0) + (params.DecreasedBondOfLife || 0) + (['纯水流华', '海渊终曲'].includes(weapon.name) ? ((params.SkillsUse || 1) >= 1 ? ((params.HealNumber || 0) + 1) : 0) : 0) + (weapon.name === "赤月之形" ? ((params.HealNumber || 0) + 1) : 0),
+        dmg: ({ params, weapon }) => Math.min(((params.BondOfLifeGet || 0) + (params.DecreasedBondOfLife || 0) + (['纯水流华', '海渊终曲'].includes(weapon.name) ? ((params.SkillsUse || 1) >= 1 ? ((params.HealNumber || 0) + 1) : 0) : 0) + (weapon.name === "赤月之形" ? ((params.HealNumber || 0) + 1) : 0)), 3) * 18
       }
     }
   },
@@ -572,7 +573,7 @@ const buffs = {
       data: {
         cpct: ({ params }) => Math.min(((params.Moonsign || 0) * 15), 30),
         lunarCharged: ({ params }) => (params["月辉明光"] || 1) * 10,
-        lunarBloom: ({params}) => (params["月辉明光"] || 1) * 10,
+        lunarBloom: ({ params }) => (params["月辉明光"] || 1) * 10,
         lunarCrystallize: ({ params }) => (params["月辉明光"] || 1) * 10
       }
     }
@@ -585,7 +586,7 @@ const buffs = {
       data: {
         mastery: ({ params }) => Math.min(((params.Moonsign || 0) * 60), 120),
         lunarCharged: ({ params }) => (params["月辉明光"] || 1) * 10,
-        lunarBloom: ({params}) => (params["月辉明光"] || 1) * 10,
+        lunarBloom: ({ params }) => (params["月辉明光"] || 1) * 10,
         lunarCrystallize: ({ params }) => (params["月辉明光"] || 1) * 10
       }
     }
@@ -597,7 +598,7 @@ const buffs = {
       title: '装备者处于队伍后台时，造成的月曜反应伤害提升20%；队伍的月兆等级至少为满辉时，造成的月曜反应伤害进一步提升40%',
       data: {
         lunarCharged: ({ params }) => (params.Moonsign || 0) > 1 ? 60 : 20,
-        lunarBloom: ({params}) => (params.Moonsign || 0) > 1 ? 60 : 20,
+        lunarBloom: ({ params }) => (params.Moonsign || 0) > 1 ? 60 : 20,
         lunarCrystallize: ({ params }) => (params.Moonsign || 0) > 1 ? 60 : 20
       }
     }
@@ -609,7 +610,28 @@ const buffs = {
       title: '普通攻击、重击、元素战技或元素爆发命中敌人后，攻击力提高[atkPct]%。若装备者已经完成了「魔女的课业」，则额外使装备者的暴击率提升[cpct]%',
       data: {
         atkPct: 25,
-        cpct: ({params}) => params.Hexenzirkel ? 20 : 0
+        cpct: ({ params }) => params.Hexenzirkel ? 20 : 0
+      }
+    }
+  },
+
+  天之美赐: {
+    2: attr('recharge', 20),
+    4: {
+      title: '依据魔导效果，施放元素战技后附近的所有角色获得[dmg]%元素伤害加成',
+      data: {
+        dmg: ({ params }) => params.Hexenzirkel ? 40 : 0
+      }
+    }
+  },
+
+  影中沉凝的幻灭: {
+    2: attr('atkPct', 18),
+    4: {
+      title: '超导反应造成的伤害提升[superConduct]%；攻击受到超导反应影响的敌人暴击率提高[cpct]%',
+      data: {
+        superConduct: 40,
+        cpct: 16
       }
     }
   }

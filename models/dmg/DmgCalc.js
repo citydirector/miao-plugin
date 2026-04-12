@@ -32,7 +32,7 @@ let DmgCalc = {
     } = data
     let calc = ds.calc
 
-    let { atk, dmg, phy, cdmg, cpct, enemydmg } = attr
+    let { atk, dmg, phy, coloringDmg, cdmg, cpct, enemydmg } = attr
 
     // 攻击区
     let atkNum = calc(atk)
@@ -50,6 +50,14 @@ let DmgCalc = {
 
     if (ele === 'phy') {
       dmgNum = (1 + phy.base / 100 + phy.plus / 100 + dynamicPhy / 100)
+    }
+
+    if (ele === 'coloringDmg') {
+      let dmgPct = attr.staticAttr.dmg.plus / 100
+      if (dmgPct > 0) {
+        dmgNum = (dmgNum - dmgPct) < 1 ? 1 : (dmgNum - dmgPct)
+      }
+      dmgNum += (coloringDmg.base / 100 + coloringDmg.plus / 100)
     }
 
     if (/^scene,.*/.test(ele) || /.*,scene$/.test(ele) || ele === 'scene') {
@@ -140,7 +148,7 @@ let DmgCalc = {
       cdmgNum = 0
     }
 
-    const isEle = ele !== false && ele !== 'phy' && ele !== 'scene'
+    const isEle = ele !== false && ele !== 'phy' && ele !== 'scene' && ele !== 'coloringDmg'
     // 反应区
     let eleNum = 1
     let eleBase = 1

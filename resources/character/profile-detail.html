@@ -41,7 +41,7 @@
         <ul class="char-attr">
           {{set attrMap = game === 'sr' ? {
           hp:'生命值',atk:'攻击力',def:'防御力',speed:'速度',cpct:'暴击率',cdmg:'暴击伤害',dmg:'伤害加成',stance:'击破特攻',effPct:'效果命中',effDef:'效果抵抗',
-          heal:'治疗加成'
+          heal:'治疗加成',joy:'欢愉度'
           }:{
           hp:'生命值',atk:'攻击力',def:'防御力',mastery:'元素精通',cpct:'暴击率',cdmg:'暴击伤害',recharge:'元素充能',dmg:'伤害加成'
           } }}
@@ -114,6 +114,9 @@
     <!-- 【 星铁 天赋+行迹 】 -->
     {{if hsr_paths === '记忆'}}
     {{set talentMap = {a: '普攻', e: '战技', t:'天赋', q: '爆发', me: '忆灵技', mt: '忆灵天赋'} }}
+    <div class="sr-talent memosprite">
+    {{else if hsr_paths === '欢愉'}}
+    {{set talentMap = {a: '普攻', e: '战技', t:'天赋', q: '爆发', xe: '欢愉技'} }}
     <div class="sr-talent memosprite">
     {{else}}
     {{set talentMap = {a: '普攻', e: '战技', t:'天赋', q: '爆发'} }}

@@ -257,17 +257,23 @@ export default function (step, staticStep) {
       }
     },
     真语秘匣: [staticStep('cpct', 8), {
-      title: '施放元素战技时元素精通提升[mastery]%, 暴击伤害提升[cdmg]%',
+      title: '施放元素战技时元素精通提升[mastery]点, 暴击伤害提升[cdmg]%',
       data: {
         mastery: ({ params, refine }) => ((params.Moonsign || 0) >= 1 ? 1.5 : 1) * step(80)[refine],
         cdmg: ({ params, refine }) => ((params.Moonsign || 0) >= 1 ? 1.5 : 1) * step(24)[refine]
       }
     }],
-    帷间夜曲: [staticStep('hpPct', 10), {
+    帷间夜曲: [staticStep('hpPct', 10, 2), {
       title: '装备者触发月曜反应或对敌人造成月曜反应伤害时，生命值上限进一步提高[hpPct]%，月曜反应伤害的暴击伤害提升[cdmg]%',
       data: {
-        hpPct: ({ params, refine }) => ((params.Moonsign || 0) > 0 ? 1 : 0) * step(14)[refine],
-        cdmg: ({ params, refine }) => ((params.Moonsign || 0) > 0 ? 1 : 0) * step(60)[refine]
+        hpPct: ({ params, refine }) => ((params.Moonsign || 0) > 0 ? 1 : 0) * step(14, 2)[refine],
+        cdmg: ({ params, refine }) => ((params.Moonsign || 0) > 0 ? 1 : 0) * step(60, 20)[refine]
+      }
+    }],
+    尘光七谕: [staticStep('atkPct', 12, 3), {
+      title: '装备者创造护盾后[hpPct]%，使当前场上角色造成的伤害提升[dmg]%',
+      data: {
+        dmg: ({ attr, calc, refine }) => Math.min(Math.floor(calc(attr.atk) / 1000) * step(10, 3)[refine], step(26, 8)[refine])
       }
     }]
   }

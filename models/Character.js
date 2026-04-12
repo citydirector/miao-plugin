@@ -55,8 +55,8 @@ class Character extends Base {
   // 是否为实装官方角色
   get isRelease () {
     if (this.isCustom) return false
-    if (Cfg.get('notReleasedData')) return true
     if (this.eta) return this.eta * 1 < new Date() * 1
+    if (Cfg.get('notReleasedData')) return true
     return false
   }
 
@@ -264,7 +264,8 @@ class Character extends Base {
         '004': 't',
         '007': 'z',
         "301": "me",
-        "302": "mt"
+        "302": "mt",
+        "420": "xe",
       }[id]
     }
     return false
