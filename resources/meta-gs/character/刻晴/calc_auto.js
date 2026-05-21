@@ -50,8 +50,8 @@ export const details = [{
     }
   }
 }, {
-  title: '刻芙希杜Q总伤害',
-  params: { q: 1, team: 'kefuxidu' },
+  title: '刻尼希杜Q总伤害',
+  params: { q: 1, team: 'kenixidu' },
   dmg: ({ talent }, dmg) => {
     let t1j = dmg(talent.q['技能伤害'], 'q')
     let t2j = dmg(talent.q['连斩伤害'] / 8, 'q')
@@ -92,10 +92,10 @@ export const details = [{
 
 export const defParams = {
   q: 1,
-  team: 'kefuxidu'  // 默认显示刻芙希杜
+  team: 'kenixidu'  // 默认显示刻尼希杜
 }
 
-export const defDmgIdx = 6  // 对应"刻芙希杜Q总伤害"（索引6，因为数组从0开始）
+export const defDmgIdx = 6  // 对应"刻尼希杜Q总伤害"（索引6，因为数组从0开始）
 export const mainAttr = 'atk,cpct,cdmg,mastery'
 
 export const buffs = [{
@@ -116,21 +116,20 @@ export const buffs = [{
     dmg: 24
   }
 }, {
-  // 刻芙希杜和刻芙希草队伍buff
-  check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kefuxicao',
-  title: '精5苍古6命芙宁娜：获得[dmg]%增伤，普攻[aDmg]%增伤，增加[atkPct]%攻击',
+  // 刻尼希杜队伍buff
+  check: ({ params }) => params.team === 'kenixidu',
+  title: '精5尘光6命尼可：获得[dmg]%增伤，增加[atkPct]%攻击,减防[enemyDef]%,减抗[kx]%',
   data: {
-    aDmg: 32,
-    a2Dmg: 32,
-    a3Dmg: 32,
-    dmg: 124,
-    atkPct: 40
+    atkPlus: 1308,
+    dmg: 58,
+    enemyDef: 40,
+    kx: 25,
   }
 }, {
-  check: ({ params }) => params.team === 'kefuxidu',
-  title: '芙宁娜-千岩牢固：增加攻击[atkPct]%',
+  check: ({ params }) => params.team === 'kenixidu',
+  title: '尼可-天之美赐：获得[dmg]%增伤',
   data: {
-    atkPct: 20
+    dmg: 40
   }
 }, {
   // 刻芙希草队伍buff
@@ -183,14 +182,14 @@ export const buffs = [{
     atkPct: 20
   }
 }, {
-  check: ({ params }) => params.team === 'kehuangxiadu' || params.team === 'kejiuxiadu',
+  check: ({ params }) => params.team === 'kehuangxiadu' || params.team === 'kejiuxiadu'|| params.team === 'kenixidu',
   title: '双火共鸣：增加攻击[atkPct]%',
   data: {
     atkPct: 25
   }
 }, {
   // 刻芙希杜、刻芙希草和刻皇希杜共有buff
-  check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kefuxicao' || params.team === 'kehuangxidu',
+  check: ({ params }) => params.team === 'kenixidu' || params.team === 'kefuxicao' || params.team === 'kehuangxidu',
   title: '精5岩峰巡歌6命希诺宁：[kx]%减抗，[dmg]%增伤',
   data: {
     kx: 45,
@@ -204,16 +203,16 @@ export const buffs = [{
   }
 }, {
   // 杜林的buff，根据队伍不同有差异
-  check: ({ params }) => params.team === 'kefuxidu',
-  title: '精5黑蚀6命杜林（刻芙队）：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
+  check: ({ params }) => params.team === 'kenixidu',
+  title: '精5黑蚀6命杜林（刻尼希杜队）：减抗[kx]%，增伤[dmg]%，减防[enemyDef]%，增加攻击[atkPct]%，提升固定伤害',
   data: {
-    kx: 20,
+    kx: 35,
     dmg: 50,
     enemyDef: 30,
-    atkPct: 32,
-    aPlus: 2950,
-    ePlus: 2950,
-    qPlus: 2900
+    atkPct: 52,
+    aPlus: 3720,
+    ePlus: 3720,
+    qPlus: 3720
   }
 }, {
   check: ({ params }) => params.team === 'kejiuxiadu',
