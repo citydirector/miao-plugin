@@ -445,9 +445,9 @@ const buffs = {
       }
     },
     4: {
-      title: '3层Buff下提高暴击率36%',
+      title: '3层Buff下提高暴击率0%',
       data: {
-        cpct: 36
+        cpct: 0
       }
     }
   },
