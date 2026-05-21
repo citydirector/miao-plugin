@@ -79,7 +79,7 @@ export const buffs = [{
 }, {
   // 刻尼希杜队伍buff
   check: ({ params }) => params.team === 'kenixidu',
-  title: '精5尘光6命尼可：获得[dmg]%增伤，增加[atkPct]%攻击,减防[enemyDef]%,减抗[kx]%',
+  title: '精5尘光6命尼可：获得[dmg]%增伤，增加[atkPlus]点攻击力,减防[enemyDef]%,减抗[kx]%',
   data: {
     atkPlus: 1308,
     dmg: 58,
@@ -165,11 +165,4 @@ export const buffs = [{
     ePlus: 4000,
     qPlus: 4000
   }
-}, {
-  // 刻芙希草队伍有超激化反应
-  check: ({ params }) => params.team === 'kefuxicao',
-  title: '超激化反应',
-  data: {
-    reaction: 'aggravate'
-  }
-}]
+}, ]
