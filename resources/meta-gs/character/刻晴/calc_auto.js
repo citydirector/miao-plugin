@@ -188,7 +188,7 @@ export const buffs = [{
     atkPct: 25
   }
 }, {
-  // 刻芙希杜、刻芙希草和刻皇希杜共有buff
+  // 刻尼希杜、刻芙希草和刻皇希杜共有buff
   check: ({ params }) => params.team === 'kenixidu' || params.team === 'kefuxicao' || params.team === 'kehuangxidu',
   title: '精5岩峰巡歌6命希诺宁：[kx]%减抗，[dmg]%增伤',
   data: {
@@ -196,7 +196,7 @@ export const buffs = [{
     dmg: 51.2
   }
 }, {
-  check: ({ params }) => params.team === 'kefuxidu' || params.team === 'kefuxicao' || params.team === 'kehuangxidu',
+  check: ({ params }) => params.team === 'kenixidu' || params.team === 'kefuxicao' || params.team === 'kehuangxidu',
   title: '希诺宁-烬城勇者绘卷：[dmg]%增伤',
   data: {
     dmg: 40
