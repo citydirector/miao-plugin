@@ -24,19 +24,6 @@ export const details = [{
     }
   }
 }, {
-  title: '刻尼希杜Q总伤害',
-  params: { q: 1, team: 'kenixidu' },
-  dmg: ({ talent }, dmg) => {
-    let t1j = dmg(talent.q['技能伤害'], 'q')
-    let t2j = dmg(talent.q['连斩伤害'] / 8, 'q')
-    let t2 = dmg(talent.q['连斩伤害'] / 8, 'q')
-    let t3j = dmg(talent.q['最后一击伤害'], 'q')
-    return {
-      dmg: t1j.dmg + t2j.dmg * 2 + t2.dmg * 6 + t3j.dmg,
-      avg: t1j.avg + t2j.avg * 2 + t2.avg * 6 + t3j.avg
-    }
-  }
-}, {
   title: '刻皇夏杜Q总伤害',
   params: { q: 1, team: 'kehuangxiadu' },
   dmg: ({ talent }, dmg) => {
@@ -49,14 +36,27 @@ export const details = [{
       avg: t1j.avg + t2j.avg * 2 + t2.avg * 6 + t3j.avg
     }
   }
-}, ]
+}, {
+  title: '刻尼希杜Q总伤害',
+  params: { q: 1, team: 'kenixidu' },
+  dmg: ({ talent }, dmg) => {
+    let t1j = dmg(talent.q['技能伤害'], 'q')
+    let t2j = dmg(talent.q['连斩伤害'] / 8, 'q')
+    let t2 = dmg(talent.q['连斩伤害'] / 8, 'q')
+    let t3j = dmg(talent.q['最后一击伤害'], 'q')
+    return {
+      dmg: t1j.dmg + t2j.dmg * 2 + t2.dmg * 6 + t3j.dmg,
+      avg: t1j.avg + t2j.avg * 2 + t2.avg * 6 + t3j.avg
+    }
+  }
+},  ]
 
 export const defParams = {
   q: 1,
   team: 'kenixidu'  // 默认显示刻尼希杜
 }
 
-export const defDmgIdx = 4  // 对应"刻尼希杜Q总伤害"（索引6，因为数组从0开始）
+export const defDmgIdx = 5  // 对应"刻尼希杜Q总伤害"（索引6，因为数组从0开始）
 export const mainAttr = 'atk,cpct,cdmg,mastery'
 
 export const buffs = [{
