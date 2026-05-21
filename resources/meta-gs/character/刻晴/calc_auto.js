@@ -79,12 +79,15 @@ export const buffs = [{
 }, {
   // 刻尼希杜队伍buff
   check: ({ params }) => params.team === 'kenixidu',
-  title: '精5尘光6命尼可：获得[dmg]%增伤，增加[atkPlus]点攻击力,减防[enemyDef]%,减抗[kx]%',
+  title: '精5尘光6命尼可：获得[dmg]%增伤，增加[atkPlus]点攻击力,减防[enemyDef]%,减抗[kx]%，提升固定伤害',
   data: {
     atkPlus: 1308,
     dmg: 58,
     enemyDef: 40,
     kx: 25,
+    aPlus: 4480,
+    ePlus: 4480,
+    qPlus: 4480
   }
 }, {
   check: ({ params }) => params.team === 'kenixidu',
@@ -148,7 +151,7 @@ export const buffs = [{
     kx: 35,
     dmg: 50,
     enemyDef: 30,
-    atkPct: 52,
+    atkPct: 56,
     aPlus: 3720,
     ePlus: 3720,
     qPlus: 3720
