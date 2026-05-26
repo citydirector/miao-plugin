@@ -85,9 +85,9 @@ export const buffs = [{
     dmg: 58,
     qIgnore: 40,
     kx: 25,
-    aPlus: 4480,
-    ePlus: 4480,
-    qPlus: 4480
+    aPlus: 4700,
+    ePlus: 4700,
+    qPlus: 4700
   }
 }, {
   check: ({ params }) => params.team === 'kenixidu',
