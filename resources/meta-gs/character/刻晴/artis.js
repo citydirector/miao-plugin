@@ -3,5 +3,5 @@ export default function ({ attr, rule, def }) {
   if (attr.mastery >= 130) {
     return rule('刻晴-精通', { atk: 50, cpct: 100, cdmg: 100, mastery: 75, dmg: 100 })
   }
-  return def({ atk: 100, cpct: 100, cdmg: 100, dmg: 100, phy: 100 })
+  return def({ atk: 0, cpct: 100, cdmg: 100, dmg: 100, phy: 100 })
 }
