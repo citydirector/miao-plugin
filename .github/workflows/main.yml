@@ -16,12 +16,12 @@ jobs:
     steps:
     # 第一步：检出你的代码
     - name: Checkout target repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v6.1.0
 
     # 第二步：同步上游代码
     - name: Sync upstream changes
       id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.3
       with:
         upstream_sync_repo: yoimiya-kokomi/miao-plugin # 原作者/原仓库名
         upstream_sync_branch: master    # 原仓库分支
