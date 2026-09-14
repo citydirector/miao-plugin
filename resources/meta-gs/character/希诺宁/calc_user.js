@@ -1,3 +1,5 @@
+// 自定义伤害：本文件（calc_user.js）优先于官方 calc_auto.js / calc.js，
+// 上游更新这些文件时不会与本文件冲突。
 export const details = [{
   title: '刃轮巡猎首段伤害',
   params: { NightsoulStatus: true },
@@ -24,7 +26,7 @@ export const details = [{
 }]
 
 export const defParams = { Nightsoul: true }
-export const defDmgIdx = 3
+export const defDmgIdx = 1
 export const mainAttr = 'def,cpct,cdmg,heal'
 
 export const buffs = [{
